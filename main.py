@@ -1,4 +1,6 @@
-from flask import Flask, session, request, redirect, render_template, url_for, flash, get_flashed_messages
+from flask import Flask, session, request
+from flask import redirect, render_template, url_for, flash
+from flask import get_flashed_messages
 from validator import validate
 from users_db import UsersRepo
 from hashlib import sha256
@@ -64,12 +66,13 @@ def get_users():
         return 'Access denied', 401
     repo = UsersRepo(username)
     term = request.args.get('term', '')
-    filtered_users = {i: u for i, u in repo.content().items() if term.lower() in u['name'].lower()}
+    items = repo.content().items()
+    filtered_usr = {i: u for i, u in items if term.lower() in u['name'].lower()}
     messages = get_flashed_messages(with_categories=True)
     return render_template(
         'users/index.html',
         username=username,
-        user_db=filtered_users,
+        user_db=filtered_usr,
         messages=messages,
         search=term
     )

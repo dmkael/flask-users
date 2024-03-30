@@ -28,4 +28,3 @@ class UsersRepo:
 
     def delete_user(self, user_id):
         del session[self.db_name][user_id]
-
