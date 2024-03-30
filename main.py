@@ -1,12 +1,17 @@
 from flask import Flask, session, request
 from flask import redirect, render_template, url_for, flash
 from flask import get_flashed_messages
+import os
+from flask_session import Session
 from validator import validate
 from users_db import UsersRepo
 from hashlib import sha256
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'some_secret'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or 'some_secret'
+app.config["SESSION_PERMANENT"] = True
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 
 users_logins = [
