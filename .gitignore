@@ -8,3 +8,4 @@ dist/
 .coverage
 coverage.xml
 .env
+flask_session/
