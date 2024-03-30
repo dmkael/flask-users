@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+</head>
+<body>
+<h1>Welcome to the session-based Web-Test</h1>
+{% include "login_form.html" %}
+{% if messages %}
+  {% for category, message in messages %}
+    <li class="{{ category }}" style="color:red;">{{ message }}</li>
+  {% endfor %}
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users main</title>
+</head>
+<body>
+{% block title %}
+<h1>Hi, {{ username }}!</h1>
+{% endblock %}
+{% include "logout_form.html" %}
+<hr>
+{% block content %}
+{% if messages %}
+  {% for category, message in messages %}
+<br>
+    <li class="{{ category }}" style="color:brown;">{{ message }}</li>
+  {% endfor %}
+<br>
+  </ul>
+{% endif %}
+<a href="/new_user">Create user</a>
+<form action="/users" method="get">
+  <input type="search" name="term" value="{{ search }}" />
+  <input type="submit" value="Search" />
+</form>
+<ol>
+    {% for user_id, user in user_db.items() %}
+    <li><a href="/users/{{ user_id }}"> {{ user.name }}</a></li>
+    {% endfor %}
+</ol>
+{% endblock %}
+</body>
+</html>

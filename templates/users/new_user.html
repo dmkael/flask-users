@@ -1,0 +1,27 @@
+{% extends "users/index.html" %}
+{% block content %}
+<form action="{{ url_for('post_new_user') }}" method="post">
+    <div><label>
+        name:
+        <input type="text" required name="name">
+    </label>
+        {% if errors.name %}
+    <ul>
+      <li style="color:red">{{ errors.name }}</li>
+    </ul>
+    {% endif %}</div>
+    <div><label>
+        email:
+        <input type="email" required name="email">
+    </label>
+        {% if errors.email %}
+    <ul>
+      <li style="color:red">{{ errors.email }}</li>
+    </ul>
+    {% endif %}</div>
+    <input type="submit" value="Create user">
+</form>
+<br>
+<a href="{{ url_for('index') }}">Back</a>
+{% endblock %}
+
