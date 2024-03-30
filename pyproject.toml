@@ -10,8 +10,10 @@ packages = [{include = "flask_users"}]
 python = "^3.10"
 flask = "^3.0.2"
 gunicorn = "^21.2.0"
-flake8 = "^7.0.0"
 
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^7.0.0"
 
 [build-system]
 requires = ["poetry-core"]
